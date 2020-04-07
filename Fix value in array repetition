@@ -1,0 +1,21 @@
+In C, when there are many repeated values, we can use a shorthand array notation to define array. Below program demonstrates same.
+
+// C program to demonstrate working of shorthand 
+// array rotation. 
+#include <stdio.h> 
+  
+int main() 
+{ 
+    // This line is same as 
+    // int array[10] = {1, 1, 1, 1, 0, 0, 2, 2, 2, 2}; 
+    int array[10] = {[0 ... 3]1, [6 ... 9]2}; 
+  
+    for (int i = 0; i < 10; i++) 
+        printf("%d ", array[i]); 
+    return 0; 
+} 
+Output:
+
+1 1 1 1 0 0 2 2 2 2 
+Note that middle gap of 2 is automatically filled with 0
+
