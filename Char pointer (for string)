@@ -1,0 +1,71 @@
+ Using char*
+
+Here, str is basically a pointer to the (const)string literal.
+Syntax:
+
+
+
+char* str = "This is GeeksForGeeks";
+Pros:
+
+Only one pointer is required to refer to whole string. That shows this is memory efficient.
+No need to declare the size of string beforehand.
+// CPP program to illustrate *char 
+#include <iostream> 
+using namespace std; 
+  
+int main() 
+{ 
+    // pointer str points to const string literal "Hello". 
+    // No need to declare size. 
+    char* str1 = "This is GeeksForGeeks"; 
+  
+    cout << str1 << endl; 
+  
+    int size = 30; 
+  
+    // can allocate size dynamically. 
+    char* str2 = (char*)malloc(sizeof(char) * size); 
+  
+    str2 = "GeeksForGeeks For Everyone"; 
+  
+    cout << str2; 
+  
+    return 0; 
+} 
+Output:
+
+This is GeeksForGeeks
+GeeksForGeeks For Everyone
+Cons:
+
+This works fine in C but writing in this form is a bad idea in C++. That’s why compiler shows warning
+of “deprecated conversion from string constant to ‘char*'” because in C string literals are arrays of char but
+in C++ they are constant array of char. Therefore use const keyword before char*.
+const char* str = "This is GeeksForGeeks";
+We cannot modify the string at later stage in program. We can change str to point something else but cannot change value present at str. Refer storage-for-strings-in-c for more detail.
+// CPP program to illustrate assigning 
+// *char value to other variable  
+#include <iostream> 
+using namespace std; 
+  
+int main() 
+{ 
+    // This initialization gives warning in C++. 
+    // "deprecated conversion from string constant 
+    // to 'char*'" 
+    char* str = "Hello"; 
+  
+    const char* str1 = "Hello"; // No warning 
+  
+    // trying to modify const string literal 
+    // gives Runtime error 
+    str[1] = 'o'; 
+  
+    cout << str << endl; 
+  
+    return 0; 
+} 
+Output:
+
+Segmentation Fault
